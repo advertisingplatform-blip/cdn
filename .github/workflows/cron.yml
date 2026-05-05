@@ -14,4 +14,4 @@ jobs:
         run: |
           curl -L \
           -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36" \
-          "https://88108365.xyz/generate_feed.php?key=38022088108365"
+          "https://stiri.ct.ws/generate_feed.php?key=38022088108365"
