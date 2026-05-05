@@ -1,0 +1,14 @@
+name: External Cron
+
+on:
+  schedule:
+    - cron: "0,30 * * * *"
+  workflow_dispatch:
+
+jobs:
+  call-cron:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call website cron
+        run: |
+          curl -A "Mozilla/5.0" "https://88108365.xyz/generate_feed.php?key=38022088108365"
