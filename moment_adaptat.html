@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ro" data-theme="light">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G2DKPS34GY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-G2DKPS34GY');
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="moment.ro">
+  <title>moment.ro</title>
+  <link rel="icon" href="https://moment.ro/favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="https://moment.ro/moment.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #fff;
+      --ink: #000;
+      --muted: #666;
+      --logo-size: min(60vmin, 460px);
+      box-sizing: border-box;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        color-scheme: dark;
+        --bg: #0b0b0b;
+        --ink: #fff;
+        --muted: #999;
+      }
+    }
+    :root[data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #0b0b0b;
+      --ink: #fff;
+      --muted: #999;
+    }
+    *, *::before, *::after { box-sizing: inherit; }
+    html, body { width: 100%; height: 100%; min-height: 100%; margin: 0; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      display: grid;
+      place-items: center;
+      font-family: "Poppins", "Segoe UI", Helvetica, Arial, sans-serif;
+      overflow: hidden;
+      -webkit-tap-highlight-color: transparent;
+      transition: background-color .25s ease, color .25s ease;
+    }
+    main {
+      min-height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.2rem;
+      padding: 1.25rem;
+    }
+    #stage-svg {
+      display: block;
+      width: var(--logo-size);
+      height: var(--logo-size);
+      max-width: 88vw;
+      max-height: 70vh;
+      overflow: visible;
+      cursor: pointer;
+      outline: none;
+      touch-action: manipulation;
+    }
+    #stage-svg:focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 10px;
+      border-radius: 18px;
+    }
+    #blob { transform-origin: 96px 145px; }
+    .slash { transform-box: fill-box; transform-origin: center; }
+    /* Animația originală de intrare a siglei Moment */
+    #logo.enter #blob {
+      opacity: 0;
+      animation: blobIn 1s cubic-bezier(.2,1.6,.4,1) .1s forwards;
+    }
+    #logo.enter .slash {
+      opacity: 0;
+      transform: translate(-18px, 14px) scaleY(.4);
+      animation-fill-mode: forwards;
+      animation-timing-function: cubic-bezier(.2,1.4,.3,1);
+      animation-duration: .7s;
+    }
+    #logo.enter #slash1 { animation-name: slashIn; animation-delay: .9s; }
+    #logo.enter #slash2 { animation-name: slashIn; animation-delay: 1.05s; }
+    #logo.enter #slash3 { animation-name: slashIn; animation-delay: 1.2s; }
+    @keyframes blobIn {
+      0% { opacity: 0; transform: scale(0) rotate(-25deg); }
+      60% { opacity: 1; transform: scale(1.08) rotate(4deg); }
+      80% { transform: scale(.96) rotate(-2deg); }
+      100% { opacity: 1; transform: scale(1) rotate(0); }
+    }
+    @keyframes slashIn {
+      0% { opacity: 0; transform: translate(-18px, 14px) scaleY(.3); }
+      65% { opacity: 1; transform: translate(2px, -3px) scaleY(1.08); }
+      100% { opacity: 1; transform: translate(0,0) scaleY(1); }
+    }
+    /* Repaus: forma originală a logo-ului */
+    #logo.idle #blob { opacity: 1; transform: scale(1) rotate(0); }
+    #logo.idle #slash1, #logo.idle #slash2, #logo.idle #slash3 {
+      opacity: 1;
+      transform: none;
+    }
+    /* La click, bula pulsează, iar cele trei linii sar ca pe un resort */
+    #logo.pulsing #blob { animation: blobClickPulse 1s ease-out 1; }
+    #logo.pulsing #slash1 { animation: springY1 1.1s cubic-bezier(.36,.07,.19,.97) 1; }
+    #logo.pulsing #slash2 { animation: springY2 1.3s cubic-bezier(.36,.07,.19,.97) 1; }
+    #logo.pulsing #slash3 { animation: springY3 1.5s cubic-bezier(.36,.07,.19,.97) 1; }
+    @keyframes blobClickPulse {
+      0% { transform: scale(1); }
+      30% { transform: scale(1.16); }
+      50% { transform: scale(.94); }
+      68% { transform: scale(1.05); }
+      83% { transform: scale(.98); }
+      100% { transform: scale(1); }
+    }
+    @keyframes springY1 {
+      0% { transform: translateY(0); } 14% { transform: translateY(-16px); }
+      34% { transform: translateY(9px); } 54% { transform: translateY(-5px); }
+      74% { transform: translateY(2.5px); } 90% { transform: translateY(-1px); }
+      100% { transform: translateY(0); }
+    }
+    @keyframes springY2 {
+      0% { transform: translateY(0); } 12% { transform: translateY(19px); }
+      30% { transform: translateY(-11px); } 50% { transform: translateY(6px); }
+      68% { transform: translateY(-3px); } 84% { transform: translateY(1.5px); }
+      100% { transform: translateY(0); }
+    }
+    @keyframes springY3 {
+      0% { transform: translateY(0); } 17% { transform: translateY(-21px); }
+      38% { transform: translateY(12px); } 58% { transform: translateY(-6.5px); }
+      76% { transform: translateY(3px); } 90% { transform: translateY(-1.5px); }
+      100% { transform: translateY(0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main aria-label="Logo moment.ro">
+    <svg id="stage-svg" viewBox="15 55 180 180" xmlns="http://www.w3.org/2000/svg"
+         role="button" tabindex="0" aria-label="moment.ro — apasă pentru animație">
+      <g id="logo" class="enter">
+        <path id="blob" fill="var(--ink)"
+          d="m 95.2809,222.52825 c -28.3923,-1.73207 -44.0527,-9.28077 -54.2673,-26.15813 -2.4645,-4.07228 -3.8469,-7.28474 -5.4125,-12.57745 -3.4745,-11.74757 -5.1373,-28.78065 -4.2306,-43.33996 1.0872,-17.45947 4.4749,-31.58432 9.4861,-39.55277 5.917,-9.40853 13.222,-15.68242 23.0827,-19.82442 10.6921,-4.49122 26.6207,-6.76055 44.5205,-6.3428 19.2584,.44945 31.3514,2.87155 42.2947,8.47116 8.6702,4.43643 16.5973,12.92444 21.0339,22.52201 3.2446,7.019 5.7635,18.61445 6.9685,32.07835 .7036,7.8623 .3708,21.31047 -.7343,29.66538 -1.6833,12.72756 -4.2072,21.54217 -8.0878,28.24598 -9.4709,16.36164 -24.8929,24.3997 -50.9318,26.54602 -4.9744,.41003 -18.8206,.56566 -23.7221,.26663 z"/>
+        <path id="slash1" class="slash" fill="var(--bg)"
+          d="m 65.526198,186.02363 c -2.583232,-.88877 -3.990656,-1.73857 -5.87312,-3.54621 -3.374614,-3.24047 -5.02951,-7.92239 -4.392478,-12.42696 .299744,-2.11951 .749477,-3.32985 5.454259,-14.67859 .974085,-2.34966 2.323457,-5.6178 2.998595,-7.26256 .675149,-1.64475 2.791156,-6.77126 4.702231,-11.39224 1.911076,-4.62097 4.081862,-9.87564 4.823965,-11.67704 .742103,-1.80139 1.658201,-4.01983 2.035781,-4.92986 .990166,-2.38648 3.273634,-5.24657 5.291071,-6.62717 3.600471,-2.46392 8.583436,-3.32042 12.507698,-2.14988 6.904191,2.05939 11.43175,9.04199 10.42238,16.07387 -.31921,2.22383 -.5231,2.74518 -10.937055,27.96488 -.776193,1.87971 -2.092045,5.08377 -2.924116,7.12014 -4.737441,11.5941 -6.764772,16.24143 -7.699233,17.64925 -1.853508,2.79244 -4.499356,4.71042 -8.11029,5.8792 -2.18548,.70739 -6.248311,.70894 -8.299688,.003 z"/>
+        <path id="slash2" class="slash" fill="var(--bg)"
+          d="m 91.270767,186.02363 c -2.583232,-.88877 -3.990656,-1.73857 -5.87312,-3.54621 -3.374614,-3.24047 -5.029509,-7.92239 -4.392477,-12.42696 .299743,-2.11951 .749476,-3.32985 5.454259,-14.67859 .974085,-2.34966 2.323457,-5.6178 2.998595,-7.26256 .675149,-1.64475 2.791155,-6.77126 4.702231,-11.39224 1.911076,-4.62097 4.081862,-9.87564 4.823965,-11.67704 .742103,-1.80139 1.6582,-4.01983 2.03578,-4.92986 .99017,-2.38648 3.27363,-5.24657 5.29107,-6.62717 3.60047,-2.46392 8.58344,-3.32042 12.5077,-2.14988 6.90419,2.05939 11.43175,9.04199 10.42238,16.07387 -.31921,2.22383 -.5231,2.74518 -10.93705,27.96488 -.7762,1.87971 -2.09205,5.08377 -2.92412,7.12014 -4.73744,11.5941 -6.76477,16.24143 -7.69923,17.64925 -1.85351,2.79244 -4.49936,4.71042 -8.110294,5.8792 -2.18548,.70739 -6.248311,.70894 -8.299689,.003 z"/>
+        <path id="slash3" class="slash" fill="var(--bg)"
+          d="m 117.01535,186.02363 c -2.58323,-.88877 -3.99066,-1.73857 -5.87312,-3.54621 -3.37462,-3.24047 -5.02951,-7.92239 -4.39248,-12.42696 .29974,-2.11951 .74948,-3.32985 5.45426,-14.67859 .97408,-2.34966 2.32346,-5.6178 2.99859,-7.26256 .67515,-1.64475 2.79116,-6.77126 4.70224,-11.39224 1.91107,-4.62097 4.08186,-9.87564 4.82396,-11.67704 .7421,-1.80139 1.6582,-4.01983 2.03578,-4.92986 .99017,-2.38648 3.27363,-5.24657 5.29107,-6.62717 3.60047,-2.46392 8.58344,-3.32042 12.5077,-2.14988 6.90419,2.05939 11.43175,9.04199 10.42238,16.07387 -.31921,2.22383 -.5231,2.74518 -10.93705,27.96488 -.7762,1.87971 -2.09205,5.08377 -2.92412,7.12014 -4.73744,11.5941 -6.76477,16.24143 -7.69923,17.64925 -1.85351,2.79244 -4.49936,4.71042 -8.11029,5.8792 -2.18548,.70739 -6.24831,.70894 -8.29969,.003 z"/>
+      </g>
+    </svg>
+  </main>
+  <script>
+    const logo = document.getElementById('logo');
+    const stage = document.getElementById('stage-svg');
+    let pulseBusy = false;
+
+    // După animația inițială, păstrăm forma originală a siglei.
+    window.setTimeout(() => {
+      if (logo.classList.contains('enter')) {
+        logo.classList.remove('enter');
+        logo.classList.add('idle');
+      }
+    }, 2000);
+
+    function pulseLogo() {
+      if (!logo.classList.contains('idle') || pulseBusy) return;
+      pulseBusy = true;
+      logo.classList.remove('idle');
+      logo.classList.add('pulsing');
+    }
+    stage.addEventListener('click', pulseLogo);
+    stage.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        pulseLogo();
+      }
+    });
+    logo.addEventListener('animationend', (event) => {
+      if (event.animationName === 'springY3') {
+        logo.classList.remove('pulsing');
+        logo.classList.add('idle');
+        pulseBusy = false;
+      }
+    });
+  </script>
+</body>
+</html>
